@@ -4,7 +4,7 @@ import (
     "log"
     "net"
     "os"
-
+	"fmt"
     "github.com/joho/godotenv"
     "melodia/user-service/handler"
     "melodia/user-service/repo"
@@ -17,16 +17,16 @@ func main() {
     // Load env
     godotenv.Load(".env")
     port := os.Getenv("PORT")
-
+	fmt.Println("Initiated with PORT:", port)
     // Connect MongoDB
     repo.ConnectMongo()
-
+	fmt.Println("MongoDB Connected")
     // Start gRPC server
     lis, err := net.Listen("tcp", ":"+port)
     if err != nil {
         log.Fatal(err)
     }
-
+	fmt.Println("gRPC Server Listening on port", port)
     grpcServer := grpc.NewServer()
     userpb.RegisterUserServiceServer(grpcServer, &handler.UserServiceServer{})
 
