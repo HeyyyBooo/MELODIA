@@ -1,0 +1,16 @@
+# Ignore environment variables
+.env
+*/.env
+
+# Go build files
+bin/
+*.exe
+*.out
+
+# IDE stuff
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
