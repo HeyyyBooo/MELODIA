@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package streaming;
+
+option go_package = "/proto;proto";
+
+service StreamingService {
+    rpc UploadSong (SongUploadRequest) returns (SongUploadResponse);
+    rpc GetSongList (Empty) returns (SongListResponse);
+    rpc GetSongByID (SongIDRequest) returns (SongResponse);
+}
+
+message SongUploadRequest {
+    string title = 1;
+    string artist = 2;
+    string album = 3;
+    string url = 4;
+}
+
+message SongUploadResponse {
+    string message = 1;
+}
+
+message Empty {}
+
+message SongIDRequest {
+    string id = 1;
+}
+
+message Song {
+    string id = 1;
+    string title = 2;
+    string artist = 3;
+    string album = 4;
+    string url = 5;
+}
+
+message SongListResponse {
+    repeated Song songs = 1;
+}
+
+message SongResponse {
+    Song song = 1;
+}
